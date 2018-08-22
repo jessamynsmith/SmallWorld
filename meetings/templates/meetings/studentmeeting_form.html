@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+        <h2>{{meeting.info}}</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+          {{form.as_p}}
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+<!--how to make it different for every meeting- make general template for meeting page, then -->

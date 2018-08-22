@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% block title %}{{meeting.name}}{% endblock %}
+{% block teams_active %}active{% endblock %}
+
+
+{% block content %}
+<a href="{% url 'meetings:user_meeting_initial' %}"></a>
+
+<h1>{{meeting.name}}</h1>
+<h2>{{meeting.video}}</h2>
+
+<ul class="pager">
+    <li class="next"><a href="#">Next</a></li>
+</ul>
+
+{% endblock %}

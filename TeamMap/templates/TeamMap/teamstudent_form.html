@@ -1,0 +1,13 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+        <h2>Join Now, student!</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Join</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

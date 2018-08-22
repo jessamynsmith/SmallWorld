@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SmallWorld{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--need to find updated bootstrap way-->
+    <link rel="stylesheet" type="text/css" href="{% static 'TeamMap/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.google.com/?selection.family=Fjalla+One"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+
+    <div class="container-fluid">
+        <!--Header: (and Logo that takes you to home)-->
+        <div class="navbar-header">
+            <!--button that turns into menu when screen shrinks-->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <!--three bars on menu line-->
+            </button>
+            <!--surround all items in navbar in container, named topNavBar-->
+            <a class="navbar-brand" href="{% url 'home' %}">SmallWorld</a>
+        </div>
+        <!--Items ----in nav bar, what goes into collapse menu (logo doesn't)-->
+        <!--topNavBar=target and items under are what you want to collapse-->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'TeamMap:index' %}">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp; About Us
+                    </a>
+                </li>
+                <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>&nbsp; Explore
+                        </a>
+                    </li>
+                </ul>
+
+        <!--search bar, no functionality yet-->
+        <form class="navbar-form navbar-left" role="search" method="get" action="#">
+            <div class="form-group">
+                <input type="text" class="form-control" name="q" value="">
+            </div>
+
+            <!--button to submit form-->
+            <button type="submit" class="btn btn-default">Search</button>
+
+
+        </form>
+
+            <ul class="nav navbar-nav navbar-right">
+
+
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <li class="">
+                    <a href="{% url 'users:role' %}">
+                        <span class="glyphicon glyphicon-parents" aria-hidden="true"></span>&nbsp; Join Now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block content %} {% endblock %}
+</body>
+</html>

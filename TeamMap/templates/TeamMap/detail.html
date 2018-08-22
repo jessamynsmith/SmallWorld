@@ -1,0 +1,32 @@
+
+
+{% extends 'home/base.html' %}
+{% block title %}Benchmark Details{% endblock %}
+{% block teams_active %}active{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'TeamMap:detail' team.id %}">
+    <img src="{{ team.team_logo.url }} " class="img-responsive" >
+
+</a>
+
+
+
+<h1>{{team.name}}</h1>
+<h3>{{team.location}}</h3>
+<h3>{{team.mentor}}</h3>
+
+
+{% for benchmark in team.benchmark_set.all %}
+        {{benchmark.infoProj}}
+        {{benchmark.problemState}}
+        <!--{% if benchmark.is_relevant %}-->
+            <!--<img src="#" />-->
+        <!--{% endif %}-->
+        <br>
+{% endfor %}
+
+
+{% endblock %}
+
