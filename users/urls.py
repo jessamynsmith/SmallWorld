@@ -5,7 +5,6 @@ from . import views
 
 from django.views.generic import TemplateView
 
-from views import ChooseRoleView, StudentSignUpView, MentorSignUpView
 #dot means same directory
 
 urlpatterns = [

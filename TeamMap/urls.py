@@ -21,9 +21,9 @@ urlpatterns = [
     # /TeamMap/team/2/delete - don't need to make pk, after create it will be assigned pk
     url(r'team/(?P<pk>[0-9]+)/delete/$', views.TeamDelete.as_view(), name='team-delete'),
 
-
-    url(r'team/(?P<teampk>[0-9]+)/join/$', views.TeamStudentCreateView.as_view(), name='team_student_create'),
+    url(r'^team/(?P<teampk>[0-9]+)/join/$', views.TeamStudentCreateView.as_view(), name='team_student_create'),
     #teampk is same as pk, but when have foreignkey to 2 things, need to specficy (should specify)
+    #updateview needsn another primary key
 
 
 

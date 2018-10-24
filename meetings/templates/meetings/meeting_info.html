@@ -4,13 +4,37 @@
 
 
 {% block content %}
-<a href="{% url 'meetings:user_meeting_initial' %}"></a>
+
 
 <h1>{{meeting.name}}</h1>
 <h2>{{meeting.video}}</h2>
 
+{% if user.is_student %}
+
+    {% if student_meeting %}
+    <a href="{% url 'meetings:student_meeting_update' student_meeting.id %}">Update: student</a>
+
+    {% else %}
+    <a href="{% url 'meetings:student_meeting_create' meeting.id %}">Create: student</a>
+
+    {% endif %}
+
+
+{% else %}
+
+    {% if mentor_meeting %}
+    <a href="{% url 'meetings:mentor_meeting_update' mentor_meeting.id %}">Update: mentor</a>
+
+
+    {% else %}
+    <a href="{% url 'meetings:mentor_meeting_create' meeting.id %}">Create: mentor</a>
+
+    {% endif %}
+
+{% endif %}
+
 <ul class="pager">
-    <li class="next"><a href="#">Next</a></li>
+    <li class="next"><a href="">Next</a></li>
 </ul>
 
 {% endblock %}

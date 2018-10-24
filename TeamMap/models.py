@@ -6,7 +6,7 @@ from users.models import Mentor, Student
 from django.contrib.auth import get_user_model
 # You can use settings to get a reference to the class name (a string) which can be used in ForeignKey fields
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import Permission
 
 class Team(models.Model):
@@ -15,12 +15,12 @@ class Team(models.Model):
     bigIssue = models.CharField(max_length= 30)
     level = models.IntegerField()
     team_logo = models.FileField()
-    accepting_members = models.BooleanField()
+    accepting_members = models.BooleanField(default=True)
 
     numMembers = models.IntegerField(default=0)
     #need to get rid of this as Team attribute in search field
     #summary data- alt is, every time want to know, look at number of related users
-    mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE)
+    mentor = models.OneToOneField(Mentor, on_delete=models.CASCADE)
 
     objects = models.Manager
     #each is column
@@ -39,16 +39,20 @@ class Team(models.Model):
 
 
     def __str__(self):
-        return "{} {}".format(self.name, self.mentor)
+        return "{} {}".format(self.name, self.mentor, self.accepting_members)
 
 
 class TeamStudent(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
     #many to many between students and teams
 
     def __str__(self):
         return "{} {}".format(self.team, self.student)
+
+    # def get_absolute_url(self): #return details page (benchmarks) of team created
+    #     return reverse('TeamMap:team_student_create', kwargs={'pk': self.pk}) #pass in with pk, hidden in class Team
+        #use pk of whatever team just created(viewed?)
 
 
 class Benchmark(models.Model):

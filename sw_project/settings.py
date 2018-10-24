@@ -20,10 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ulm-7sdz-=wuga9kqwmhv_zt+$m5#^zcv!#!9y!ubdjz6l3&if'
+#SECRET_KEY = 'ulm-7sdz-=wuga9kqwmhv_zt+$m5#^zcv!#!9y!ubdjz6l3&if'
+
+import os
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 # ALLOWED_HOSTS = []./manage.py collectstatic
 
@@ -45,6 +49,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'meetings.apps.MeetingsConfig',
+    'about.apps.AboutConfig',
+    'contact.apps.ContactConfig'
 
 ]
 

@@ -16,6 +16,11 @@
 <h1>{{team.name}}</h1>
 <h3>{{team.location}}</h3>
 <h3>{{team.mentor}}</h3>
+<h3>{{team.student_set}}</h3>
+
+{% if team.accepting_members == True %}
+    <p><a href="{% url 'TeamMap:team_student_create' team.id %}">Join Now</a></p>
+{% endif %}
 
 
 {% for benchmark in team.benchmark_set.all %}

@@ -1,6 +1,6 @@
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views import generic
 from TeamMap.models import Team, TeamStudent
 from django.contrib.auth.decorators import user_passes_test

@@ -1,37 +1,160 @@
 
 {% extends 'home/base.html' %}
-
-
+{% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
 
+    {% if user.is_authenticated and user.is_student %}
+    <h2> Hi {{ user.username }}! </h2>
+<p><a href="{% url 'logout' %}">Logout</a></p>
+    <h3> Join a team now!</h3>
+<p><a href="{% url 'TeamMap:index' %}">Explore all teams.</a></p>
+    <h3> Already part of a team? Go to your team profile. </h3>
 
-{% if user.is_authenticated and user.is_student %}
-    Hi Student {{ user.username }}!
-        <p><a href="{% url 'logout' %}">logout</a></p>
-    Go to your team profile.
-
-{% elif user.is_authenticated and user.is_mentor %}
-    Hi Mentor {{ user.username }}!
-        <p><a href="{% url 'logout' %}">logout</a></p>
-    Maybe you haven't created a team yet: Create a Team!
-        <p><a href="{% url 'TeamMap:team-add' %}">Create Team</a></p>
-    Maybe you have created a team, go to your team profile.
-
+    {% elif user.is_authenticated and user.is_mentor %}
+    <h2> Hi {{ user.username }}! </h2>
+<p><a href="{% url 'logout' %}">logout</a></p>
+    <h3>Maybe you haven't created a team yet: Create a Team!</h3>
+<p><a href="{% url 'TeamMap:team-add' %}">Create Team</a></p>
+    <h3>Maybe you have created a team, go to your team profile.</h3>
 
 {% else %}
 
-<h2>Welcome to the SmallWorld! <span class="icon-emo-happy"></span></h2>
-  <p class="lead">
-    If you already have an account, go ahead and <a href="{% url 'login' %}">log in</a>. If you are new to SmallWorld, get started
-    by creating a <a href="{% url 'users:signup-student' %}">student account</a> or a <a href="{% url 'users:signup-mentor' %}">mentor account</a>.
-  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SmallWorld</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900' %}" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/prettyphoto/css/prettyphoto.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/hover/hoverex-all.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+    Template Name: Solid
+    Template URL: https://templatemag.com/solid-bootstrap-business-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <!-- *****************************************************************************************************************
+	 HEADERWRAP
+	 ***************************************************************************************************************** -->
+  <div id="headerwrap">
+    <div class="container">
+      <div class="row">
+
+          <h1> High school students can solve real-world problems. </h1>
+          <h3>Join a SmallWorld team <br> to begin solving.</h3>
+          <h2>Create a <a href="{% url 'users:signup-student' %}">student account</a> or a <a href="{% url 'users:signup-mentor' %}">mentor account</a> today.</h2>
+          <img src="{% static 'img/globe_purple_black.png' %}" class="img-responsive">
+
+
+      </div>
+
+
+
+
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /headerwrap -->
+
+  <!-- *****************************************************************************************************************
+	 SmallWorld Teams
+	 ***************************************************************************************************************** -->
+  <div id="teaminfo">
+    <div class="row">
+      <h1> SmallWorld teams identify and solve a humanitarian problem over two semesters through our free web-based program. </h1>
+      <h2> How are SmallWorld teams effective and impactful? </h2>
+    </div>
+    <div class="row">
+      <div class="column"><img src="{% static 'img/identify_soln_2_250x250.jpg' %}" style="width:100%"> </div>
+      <div class="column"><img src="{% static 'img/become_educated_250x250.jpg' %}" style="width:100%"> </div>
+      <div class="column"><img src="{% static 'img/form_a_solution_250x250.jpg' %}" style="width:100%"> </div>
+      <div class="column"><img src="{% static 'img/create_ab_250x250.jpg' %}" style="width:100%"> </div>
+      <div class="column"><img src="{% static 'img/solve_250x250.jpg' %}" style="width:100%"> </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-default">Begin solving.</button>
+  </div>
+
+  <!-- *****************************************************************************************************************
+	 PORTFOLIO SECTION
+	 ***************************************************************************************************************** -->
+
+
+  <!-- *****************************************************************************************************************
+	 MIDDLE CONTENT
+	 ***************************************************************************************************************** -->
+
+  <div class="container mtb">
+
+  </div>
+
+
+
+  <!-- *****************************************************************************************************************
+	 FOOTER
+	 ***************************************************************************************************************** -->
+
+
+  <div id="copyrights">
+    <div class="container">
+      <p>
+        &copy; Copyrights <strong>Solid</strong>. All Rights Reserved
+      </p>
+      <div class="credits">
+        <!--
+          You are NOT allowed to delete the credit link to TemplateMag with free version.
+          You can delete the credit link only if you bought the pro version.
+          Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/solid-bootstrap-business-template/
+          Licensing information: https://templatemag.com/license/
+        -->
+        Created with Solid template by <a href="https://templatemag.com/">TemplateMag</a>
+      </div>
+    </div>
+  </div>
+  <!-- / copyrights -->
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/php-mail-form/validate.js"></script>
+  <script src="lib/prettyphoto/js/prettyphoto.js"></script>
+  <script src="lib/isotope/isotope.min.js"></script>
+  <script src="lib/hover/hoverdir.js"></script>
+  <script src="lib/hover/hoverex.min.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
+
 {% endif %}
 {% endblock %}
-
-
-
 
 
 

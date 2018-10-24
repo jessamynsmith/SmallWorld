@@ -1,73 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}SmallWorld{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!--need to find updated bootstrap way-->
-    <link rel="stylesheet" type="text/css" href="{% static 'TeamMap/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.google.com/?selection.family=Fjalla+One"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <title>SmallWorld</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Playfair+Display+SC" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/prettyphoto/css/prettyphoto.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/hover/hoverex-all.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+    Template Name: Solid
+    Template URL: https://templatemag.com/solid-bootstrap-business-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
 </head>
+
 <body>
-<nav class="navbar navbar-inverse">
 
-    <div class="container-fluid">
-        <!--Header: (and Logo that takes you to home)-->
-        <div class="navbar-header">
-            <!--button that turns into menu when screen shrinks-->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <!--three bars on menu line-->
-            </button>
-            <!--surround all items in navbar in container, named topNavBar-->
-            <a class="navbar-brand" href="{% url 'home' %}">SmallWorld</a>
-        </div>
-        <!--Items ----in nav bar, what goes into collapse menu (logo doesn't)-->
-        <!--topNavBar=target and items under are what you want to collapse-->
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav">
-                <li class="">
-                    <a href="{% url 'TeamMap:index' %}">
-                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp; About Us
-                    </a>
-                </li>
-                <li class="">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>&nbsp; Explore
-                        </a>
-                    </li>
-                </ul>
-
-        <!--search bar, no functionality yet-->
-        <form class="navbar-form navbar-left" role="search" method="get" action="#">
-            <div class="form-group">
-                <input type="text" class="form-control" name="q" value="">
-            </div>
-
-            <!--button to submit form-->
-            <button type="submit" class="btn btn-default">Search</button>
-
-
-        </form>
-
-            <ul class="nav navbar-nav navbar-right">
-
-
-            <!--<ul class="nav navbar-nav navbar-right">-->
-                <li class="">
-                    <a href="{% url 'users:role' %}">
-                        <span class="glyphicon glyphicon-parents" aria-hidden="true"></span>&nbsp; Join Now
-                    </a>
-                </li>
-            </ul>
-        </div>
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="{% url 'home:home' %}">SMALLWORLD</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <li><a href="#">WHO WE ARE</a></li>
+          <li><a href="#">CONTACT</a></li>
+          <li> <a href="{% url 'login' %}">LOG IN</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
     </div>
-</nav>
+  </div>
+
 {% block content %} {% endblock %}
-</body>
-</html>

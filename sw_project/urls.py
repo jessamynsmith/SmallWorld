@@ -13,10 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
 
-from django.conf.urls import include, url
+
+from django.conf.urls import url, include
+from django.urls import include, path
 from django.contrib import admin
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -31,13 +31,24 @@ from home import views
 
 urlpatterns = [
 
-    url('^', include('django.contrib.auth.urls')),
+
     url(r'^admin/', admin.site.urls),
-    url(r'^home/$', views.HomeView.as_view(), name='home'),
+    path('', include('django.contrib.auth.urls')),
+    path('', include(('home.urls', 'home'), namespace='home')),
+    path('TeamMap/', include(('TeamMap.urls', 'TeamMap'), namespace='TeamMap')),
+    path('users/', include(('users.urls', 'users'), namespace='users')),
+    path('meetings/', include(('meetings.urls', 'meetings'), namespace='meetings')),
+    path('about/', include(('about.urls', 'about'), namespace='about')),
+    path('contact/', include(('contact.urls', 'contact'), namespace='contact')),
+
+
+    # url(r'^home/$', views.HomeView.as_view(), name='home'),
     # url(r'^home/$', include('Home.urls', name='home')),
-    url(r'^TeamMap/', include('TeamMap.urls', namespace = 'TeamMap')),
-    url(r'^users/', include ('users.urls', namespace = 'users')),
-    url(r'^meetings/', include ('meetings.urls', namespace = 'meetings')),
+    # url(r'^TeamMap/', include('TeamMap.urls', namespace = 'admin')),
+    #url(r'^users/', include ('users.urls', namespace = 'users')),
+    #url(r'^meetings/', include ('meetings.urls', namespace = 'meetings')),
+    # url(r'^users/', include ('users.urls')),
+    # url(r'^meetings/', include ('meetings.urls')),
 
 
 ]

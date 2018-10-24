@@ -3,11 +3,22 @@
 {% block content %}
   <div class="row">
     <div class="col-md-8 col-sm-10 col-12">
-        <h2>{{meeting.info}}</h2>
+        <h2>
+          {% if meeting %}
+          {{meeting.info}}
+          {% else %}
+          {{object.meeting.info}}
+          {% endif %}
+        </h2>
       <form method="post" novalidate>
-        {% csrf_token %}
+        <div class="form-group">
+          {% csrf_token %}
+
           {{form.as_p}}
-        <button type="submit" class="btn btn-success">Submit</button>
+
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+
       </form>
     </div>
   </div>
