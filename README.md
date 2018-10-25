@@ -1,1 +1,1 @@
-# SW-gh
+# SmallWorld Project
